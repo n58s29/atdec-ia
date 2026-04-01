@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trouver un emploi plus vite grâce à l'IA — Atdec Nantes Métropole</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bleu-atdec: #1B3B6F;
+    --bleu-clair: #2E5DA1;
+    --bleu-vif: #3B82D9;
+    --bleu-pale: #E8F0FE;
+    --bleu-subtle: #F3F7FD;
+    --orange: #F28C28;
+    --orange-pale: #FFF4E8;
+    --rose: #E84B8A;
+    --rose-pale: #FDE8F0;
+    --vert: #2DB87B;
+    --vert-pale: #E6F8F0;
+    --text-dark: #1a2234;
+    --text-body: #3d4663;
+    --text-dim: #7a8199;
+    --white: #ffffff;
+    --bg: #FAFBFE;
+    --border: #e2e6f0;
+    --shadow: 0 2px 16px rgba(27,59,111,.08);
+    --shadow-hover: 0 8px 32px rgba(27,59,111,.14);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text-body);
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: .8rem 2rem;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  nav .logo-wrap {
+    display: flex; align-items: center; gap: .7rem;
+  }
+  nav .logo-wrap img { height: 38px; }
+  nav .logo-text {
+    font-weight: 800; font-size: .85rem; color: var(--bleu-atdec);
+    letter-spacing: .02em; line-height: 1.2;
+  }
+  nav .logo-text span { display: block; font-weight: 600; font-size: .7rem; color: var(--text-dim); }
+  nav ul { list-style: none; display: flex; gap: 1.8rem; }
+  nav a {
+    color: var(--text-dim); text-decoration: none; font-size: .82rem;
+    font-weight: 700; transition: color .2s; position: relative;
+  }
+  nav a:hover { color: var(--bleu-atdec); }
+  nav a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 2px; background: var(--bleu-vif); border-radius: 2px;
+    transform: scaleX(0); transition: transform .25s;
+  }
+  nav a:hover::after { transform: scaleX(1); }
+
+  @media (max-width: 700px) {
+    nav ul { display: none; }
+    nav { padding: .8rem 1.2rem; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 7rem 2rem 4rem;
+    position: relative;
+    background: linear-gradient(170deg, var(--bleu-pale) 0%, var(--bg) 50%, var(--orange-pale) 100%);
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 10%; right: -5%;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,140,40,.12), transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 5%; left: -5%;
+    width: 250px; height: 250px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,217,.1), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero .badge {
+    display: inline-flex; align-items: center; gap: .6rem;
+    padding: .5rem 1.2rem; border-radius: 100px;
+    background: var(--white); border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    font-size: .78rem; font-weight: 800; color: var(--bleu-atdec);
+    margin-bottom: 2rem;
+    animation: fadeUp .7s ease both;
+    text-transform: uppercase; letter-spacing: .08em;
+  }
+  .hero .badge .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--vert); animation: pulse 2s infinite;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    line-height: 1.18; font-weight: 700;
+    color: var(--bleu-atdec); max-width: 780px;
+    animation: fadeUp .7s .1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--bleu-vif);
+    position: relative;
+  }
+  .hero h1 em::after {
+    content: ''; position: absolute; bottom: 2px; left: 0; right: 0;
+    height: 6px; background: rgba(242,140,40,.3); border-radius: 3px;
+    z-index: -1;
+  }
+
+  .hero .sub {
+    margin-top: 1.5rem; font-size: 1.1rem; color: var(--text-dim);
+    max-width: 540px; font-weight: 600;
+    animation: fadeUp .7s .2s ease both;
+  }
+
+  .hero .cta-row {
+    display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap;
+    justify-content: center; animation: fadeUp .7s .35s ease both;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .8rem 1.6rem; border-radius: var(--radius-sm);
+    font-size: .88rem; font-weight: 700; text-decoration: none;
+    cursor: pointer; border: none; transition: transform .2s, box-shadow .2s;
+    font-family: 'Nunito', sans-serif;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary {
+    background: var(--bleu-atdec); color: var(--white);
+    box-shadow: 0 4px 20px rgba(27,59,111,.3);
+  }
+  .btn-primary:hover { box-shadow: 0 8px 28px rgba(27,59,111,.4); }
+  .btn-secondary {
+    background: var(--white); color: var(--bleu-atdec);
+    border: 2px solid var(--bleu-atdec);
+  }
+
+  .hero .stats {
+    display: flex; gap: 2.5rem; margin-top: 4rem;
+    animation: fadeUp .7s .5s ease both;
+  }
+  .hero .stat {
+    text-align: center; padding: 1.2rem 1.5rem;
+    background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--border); box-shadow: var(--shadow);
+  }
+  .hero .stat strong {
+    display: block; font-size: 1.6rem; font-weight: 900;
+    color: var(--bleu-vif);
+  }
+  .hero .stat span {
+    font-size: .72rem; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: .08em; font-weight: 700;
+  }
+  @media (max-width: 500px) {
+    .hero .stats { gap: 1rem; }
+    .hero .stat { padding: .8rem 1rem; }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; max-width: 920px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: .72rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .12em; color: var(--bleu-vif); margin-bottom: .8rem;
+  }
+  .section-label::before {
+    content: ''; width: 24px; height: 3px;
+    background: var(--orange); border-radius: 3px;
+  }
+  section > h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--bleu-atdec); margin-bottom: .6rem;
+  }
+  section > .subtitle {
+    font-size: 1rem; color: var(--text-dim); max-width: 580px;
+    margin-bottom: 2.5rem; font-weight: 600;
+  }
+
+  /* ── INTRO COMPARE ── */
+  .compare-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;
+  }
+  @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+
+  .compare-card {
+    padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--white); position: relative; overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .compare-card.before { border-left: 4px solid var(--rose); }
+  .compare-card.after { border-left: 4px solid var(--vert); }
+  .compare-card .tag {
+    display: inline-block; font-size: .68rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: .1em;
+    padding: .3rem .8rem; border-radius: 6px; margin-bottom: .8rem;
+  }
+  .compare-card.before .tag { background: var(--rose-pale); color: var(--rose); }
+  .compare-card.after .tag { background: var(--vert-pale); color: var(--vert); }
+  .compare-card .big {
+    font-size: 2.4rem; font-weight: 900; color: var(--bleu-atdec); margin-bottom: .3rem;
+  }
+  .compare-card p { font-size: .9rem; color: var(--text-dim); }
+
+  .message-cle {
+    margin-top: 2rem; padding: 1.5rem 1.8rem;
+    background: var(--bleu-pale); border: 1px solid rgba(59,130,217,.2);
+    border-radius: var(--radius); border-left: 4px solid var(--bleu-vif);
+  }
+  .message-cle .label {
+    font-size: .78rem; font-weight: 800; color: var(--bleu-vif);
+    text-transform: uppercase; letter-spacing: .08em; margin-bottom: .4rem;
+  }
+  .message-cle p { font-size: .92rem; color: var(--text-dark); }
+
+  /* ── STEPS ── */
+  .steps { counter-reset: step; }
+  .step {
+    counter-increment: step;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: box-shadow .3s, transform .3s;
+  }
+  .step:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+  .step::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute; top: 1.2rem; right: 1.8rem;
+    font-size: 4rem; font-weight: 900; color: rgba(27,59,111,.04);
+    line-height: 1; pointer-events: none;
+  }
+  .step .step-head {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+  }
+  .step .step-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .step:nth-child(1) .step-icon { background: var(--bleu-pale); }
+  .step:nth-child(2) .step-icon { background: var(--vert-pale); }
+  .step:nth-child(3) .step-icon { background: var(--orange-pale); }
+  .step:nth-child(4) .step-icon { background: var(--rose-pale); }
+  .step:nth-child(5) .step-icon { background: #F0E6FF; }
+
+  .step h3 {
+    font-size: 1.15rem; font-weight: 800; color: var(--bleu-atdec);
+  }
+  .step > p {
+    font-size: .92rem; color: var(--text-dim); margin-bottom: 1.2rem;
+  }
+
+  .prompt-box {
+    background: var(--bleu-subtle); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 1.2rem 1.4rem;
+    margin-bottom: .8rem; font-size: .85rem; line-height: 1.7;
+    position: relative;
+  }
+  .prompt-box::before {
+    content: 'PROMPT'; position: absolute; top: -.55rem; left: 1rem;
+    font-size: .58rem; font-weight: 800; letter-spacing: .12em;
+    background: var(--bleu-vif); color: var(--white); padding: .15rem .6rem;
+    border-radius: 4px;
+  }
+  .prompt-box code {
+    font-family: 'Nunito', sans-serif; color: var(--bleu-atdec); font-weight: 600;
+  }
+
+  .gain-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+  .gain-tag {
+    display: inline-flex; align-items: center; gap: .3rem;
+    padding: .35rem .9rem; border-radius: 100px;
+    background: var(--vert-pale); font-size: .78rem;
+    color: var(--vert); font-weight: 700;
+    border: 1px solid rgba(45,184,123,.2);
+  }
+
+  /* ── ERRORS ── */
+  .errors-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+  .error-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-left: 4px solid var(--rose);
+    border-radius: var(--radius); padding: 2rem 2.5rem;
+    box-shadow: var(--shadow);
+    transition: transform .3s;
+  }
+  .error-card:hover { transform: translateX(4px); }
+  .error-card h3 {
+    font-size: 1.05rem; font-weight: 800; color: var(--rose);
+    margin-bottom: .5rem; display: flex; align-items: center; gap: .5rem;
+  }
+  .error-card p { font-size: .9rem; color: var(--text-dim); }
+  .error-card .key-msg {
+    margin-top: 1rem; padding: .8rem 1rem;
+    background: var(--rose-pale); border-radius: var(--radius-sm);
+    font-size: .85rem; font-weight: 700; color: var(--text-dark);
+    border: 1px solid rgba(232,75,138,.15);
+  }
+
+  /* ── SOCIALS ── */
+  .social-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+  .social-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .social-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .social-card .sc-icon {
+    font-size: 2rem; margin-bottom: .8rem;
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .social-card:nth-child(1) .sc-icon { background: var(--bleu-pale); }
+  .social-card:nth-child(2) .sc-icon { background: var(--orange-pale); }
+  .social-card:nth-child(3) .sc-icon { background: #F0E6FF; }
+  .social-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--bleu-atdec); margin-bottom: .5rem; }
+  .social-card p { font-size: .85rem; color: var(--text-dim); }
+  .social-card ul { list-style: none; margin-top: .8rem; }
+  .social-card li {
+    font-size: .85rem; color: var(--text-body); padding: .3rem 0;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .social-card li::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--orange); flex-shrink: 0;
+  }
+  .social-card .msg-example {
+    margin-top: 1rem; padding: 1rem;
+    background: var(--bleu-subtle); border-radius: var(--radius-sm);
+    font-size: .82rem; color: var(--text-body); font-style: italic;
+    border: 1px solid var(--border);
+  }
+
+  /* ── TIPS ── */
+  .tips-list { counter-reset: tip; }
+  .tip {
+    counter-increment: tip;
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    padding: 1.4rem 0; border-bottom: 1px solid var(--border);
+  }
+  .tip:last-child { border-bottom: none; }
+  .tip .tip-num {
+    flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px;
+    background: var(--orange-pale); display: flex; align-items: center;
+    justify-content: center; font-weight: 900; font-size: .9rem;
+    color: var(--orange); border: 1px solid rgba(242,140,40,.2);
+  }
+  .tip .tip-num::after { content: counter(tip); }
+  .tip p { font-size: .92rem; }
+  .tip strong { color: var(--text-dark); }
+
+  /* ── CONCLUSION ── */
+  .conclusion-box {
+    text-align: center; padding: 4rem 2.5rem;
+    background: var(--bleu-atdec);
+    border-radius: 24px; position: relative; overflow: hidden;
+    color: var(--white);
+  }
+  .conclusion-box::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.06), transparent 70%);
+    pointer-events: none;
+  }
+  .conclusion-box::after {
+    content: ''; position: absolute; bottom: -60px; left: -60px;
+    width: 250px; height: 250px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,140,40,.15), transparent 70%);
+    pointer-events: none;
+  }
+  .conclusion-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700;
+    margin-bottom: 1.5rem; position: relative; line-height: 1.3;
+    color: var(--white);
+  }
+  .conclusion-box h2 em {
+    font-style: italic; color: var(--orange);
+  }
+  .conclusion-pills {
+    display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center;
+    margin-bottom: 2rem; position: relative;
+  }
+  .conclusion-pill {
+    padding: .5rem 1.2rem; border-radius: 100px;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    font-size: .85rem; font-weight: 700; color: var(--white);
+  }
+  .conclusion-box .final {
+    font-size: 1.05rem; opacity: .85; max-width: 500px; margin: 0 auto;
+    position: relative;
+  }
+  .conclusion-box .final strong {
+    color: var(--orange); opacity: 1; font-weight: 800;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 2.5rem 2rem;
+    font-size: .78rem; color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; gap: .8rem;
+  }
+  footer img { height: 45px; opacity: .7; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .4; transform: scale(.8); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── DECORATIVE DOTS ── */
+  .deco-dots {
+    position: absolute; pointer-events: none; opacity: .15;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    nav { display: none; }
+    .hero { min-height: auto; padding: 2rem; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap">
+    <img src="https://www.atdec.org/wp-content/uploads/2026/02/atdec-mde-ml-plie-bleu-2.png" alt="Logo Atdec Nantes Métropole" onerror="this.style.display='none'">
+  </div>
+  <ul>
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#etapes">5 étapes</a></li>
+    <li><a href="#erreurs">Erreurs</a></li>
+    <li><a href="#reseaux">Réseaux</a></li>
+    <li><a href="#tips">Tips</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="badge"><span class="dot"></span> Webinaire Atdec</div>
+  <h1>Trouver un emploi plus vite<br>grâce à <em>l'IA</em></h1>
+  <p class="sub">Sans se faire piéger. Comment utiliser l'intelligence artificielle intelligemment dans votre recherche d'emploi.</p>
+  <div class="cta-row">
+    <a href="#etapes" class="btn btn-primary">Découvrir les 5 étapes &darr;</a>
+    <a href="#erreurs" class="btn btn-secondary">Les erreurs à éviter</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><strong>30&rarr;10</strong><span>min / lettre</span></div>
+    <div class="stat"><strong>5</strong><span>usages clés</span></div>
+    <div class="stat"><strong>3</strong><span>pièges à éviter</span></div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="reveal">
+    <div class="section-label">Introduction &mdash; 5 min</div>
+    <h2>La recherche d'emploi a changé</h2>
+    <p class="subtitle">Les recruteurs utilisent aussi l'IA. Les candidatures sont plus nombreuses. Et beaucoup de candidats utilisent l'IA&hellip; assez mal.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card before">
+        <div class="tag">Avant l'IA</div>
+        <div class="big">30 min</div>
+        <p>Pour rédiger une seule lettre de motivation, souvent générique, sans personnalisation.</p>
+      </div>
+      <div class="compare-card after">
+        <div class="tag">Avec l'IA</div>
+        <div class="big">10 min</div>
+        <p>Une lettre personnalisée et percutante &mdash; mais seulement si on sait bien s'en servir.</p>
+      </div>
+    </div>
+
+    <div class="message-cle">
+      <div class="label">Message clé</div>
+      <p>L'IA n'est pas là pour chercher un travail à votre place. Elle est là pour vous aider à <strong>réfléchir plus vite et mieux</strong>. L'IA ne va pas vous trouver du travail, mais vous allez vous en servir pour chercher et être percutant dans vos démarches.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 ÉTAPES -->
+<section id="etapes">
+  <div class="reveal">
+    <div class="section-label">Le c&oelig;ur du webinaire &mdash; 20 min</div>
+    <h2>5 utilisations utiles de l'IA</h2>
+    <p class="subtitle">De la compréhension de l'offre jusqu'au pitch en entretien, voici comment l'IA devient votre assistant personnel.</p>
+  </div>
+
+  <div class="steps">
+    <!-- Step 1 -->
+    <div class="step reveal">
+      <div class="step-head">
+        <div class="step-icon">&#x1F50D;</div>
+        <h3>Comprendre une offre d'emploi</h3>
+      </div>
+      <p>Beaucoup de personnes ne comprennent pas toujours les offres ou ne prennent pas le temps de les lire avec attention. L'IA peut décrypter pour vous.</p>
+      <div class="prompt-box">
+        <code>Explique-moi simplement cette offre d'emploi comme si j'étais junior avec peu d'expérience. Quels sont les 5 éléments importants ?</code>
+      </div>
+      <div class="gain-list">
+        <span class="gain-tag">&#10003; Meilleure compréhension</span>
+        <span class="gain-tag">&#10003; Moins d'auto-censure</span>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step reveal">
+      <div class="step-head">
+        <div class="step-icon">&#x1F4DD;</div>
+        <h3>Adapter son CV à une offre</h3>
+      </div>
+      <p>Un CV ciblé = plus de chances d'obtenir une réponse. L'IA vous aide à aligner vos expériences avec ce que recherche le recruteur.</p>
+      <div class="prompt-box">
+        <code>Voici mon CV et voici une offre d'emploi. Quels éléments de mon CV dois-je mettre en avant pour ce poste ?</code>
+      </div>
+      <div class="prompt-box">
+        <code>Réécris les missions de mon alternance pour qu'elles correspondent davantage à ce poste.</code>
+      </div>
+      <div class="gain-list">
+        <span class="gain-tag">&#10003; CV plus ciblé</span>
+        <span class="gain-tag">&#10003; Plus de réponses</span>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step reveal">
+      <div class="step-head">
+        <div class="step-icon">&#x1F3AF;</div>
+        <h3>Préparer un entretien</h3>
+      </div>
+      <p>Usage parfois peu connu mais redoutablement efficace. L'IA peut même simuler un entretien complet !</p>
+      <div class="prompt-box">
+        <code>Je passe un entretien pour ce poste. Pose-moi les 10 questions les plus probables et donne-moi des conseils pour y répondre.</code>
+      </div>
+      <div class="prompt-box">
+        <code>Fais-moi un entretien simulé pour ce poste.</code>
+      </div>
+      <div class="gain-list">
+        <span class="gain-tag">&#10003; Préparation solide</span>
+        <span class="gain-tag">&#10003; Moins de stress</span>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step reveal">
+      <div class="step-head">
+        <div class="step-icon">&#x1F4AA;</div>
+        <h3>Identifier ses compétences</h3>
+      </div>
+      <p>Beaucoup de juniors sous-estiment leurs compétences. L'IA est configurée pour encourager et soutenir &mdash; jamais pour juger ou dénigrer.</p>
+      <div class="prompt-box">
+        <code>Voici les missions de mon alternance. Quelles compétences professionnelles puis-je mettre sur mon CV ?</code>
+      </div>
+      <div class="gain-list">
+        <span class="gain-tag">&#10003; Confiance renforcée</span>
+        <span class="gain-tag">&#10003; CV enrichi</span>
+        <span class="gain-tag">&#10003; Meilleur entretien</span>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step reveal">
+      <div class="step-head">
+        <div class="step-icon">&#x1F3A4;</div>
+        <h3>S'entraîner à parler de soi</h3>
+      </div>
+      <p>Le fameux « pitch » d'une minute. Indispensable pour les entretiens, les forums emploi et les appels aux recruteurs.</p>
+      <div class="prompt-box">
+        <code>Aide-moi à préparer une présentation de 1 minute pour un entretien d'embauche (le pitch).</code>
+      </div>
+      <div class="gain-list">
+        <span class="gain-tag">&#10003; Entretiens</span>
+        <span class="gain-tag">&#10003; Forums emploi</span>
+        <span class="gain-tag">&#10003; Appels recruteurs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ERREURS -->
+<section id="erreurs">
+  <div class="reveal">
+    <div class="section-label">Partie cruciale &mdash; 7 min</div>
+    <h2>Les erreurs à éviter</h2>
+    <p class="subtitle">Utiliser l'IA c'est bien. Bien l'utiliser c'est mieux. Voici les 3 pièges classiques.</p>
+  </div>
+
+  <div class="errors-grid">
+    <div class="error-card reveal">
+      <h3>&#9888;&#65039; Le copier-coller brut</h3>
+      <p>Les recruteurs repèrent immédiatement les phrases trop génériques, le manque de personnalité et les lettres identiques entre candidats.</p>
+      <div class="key-msg">&rarr; L'IA doit aider à écrire, pas écrire à votre place.</div>
+    </div>
+
+    <div class="error-card reveal">
+      <h3>&#9888;&#65039; Mentir avec l'IA</h3>
+      <p>Inventer des compétences ou des expériences, c'est le risque d'être mis en difficulté en entretien et de perdre toute crédibilité. Attention : si vous demandez à l'IA de « développer » une compétence, elle va le faire&hellip; même au-delà de la réalité.</p>
+      <div class="key-msg">&rarr; L'IA amplifie ce que vous lui donnez. Si vous lui donnez du faux, elle amplifie du faux.</div>
+    </div>
+
+    <div class="error-card reveal">
+      <h3>&#9888;&#65039; Dépendre totalement de l'IA</h3>
+      <p>Si l'IA devient indisponible : plus d'idées, plus d'autonomie. Le gain de confiance construit en des semaines est perdu en quelques minutes.</p>
+      <div class="key-msg">&rarr; L'IA doit valoriser votre intelligence, pas la remplacer.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉSEAUX SOCIAUX -->
+<section id="reseaux">
+  <div class="reveal">
+    <div class="section-label">Bonus &mdash; 5 min</div>
+    <h2>Les réseaux sociaux pour trouver un emploi</h2>
+    <p class="subtitle">LinkedIn n'est pas le seul réseau utile. Voici comment exploiter chaque plateforme.</p>
+  </div>
+
+  <div class="social-cards reveal">
+    <div class="social-card">
+      <div class="sc-icon">&#x1F4BC;</div>
+      <h3>LinkedIn</h3>
+      <p>Le réseau incontournable pour la recherche d'emploi.</p>
+      <ul>
+        <li>Suivre les entreprises ciblées</li>
+        <li>Commenter des publications</li>
+        <li>Envoyer des messages simples aux recruteurs</li>
+      </ul>
+      <div class="msg-example">
+        &laquo; Bonjour, je termine mon alternance en commerce et je m'intéresse à votre entreprise. Auriez-vous des conseils pour quelqu'un qui souhaite travailler dans ce secteur ? &raquo;
+      </div>
+    </div>
+
+    <div class="social-card">
+      <div class="sc-icon">&#x1F4F8;</div>
+      <h3>Instagram</h3>
+      <p>Oui, ça peut servir ! Certaines entreprises publient :</p>
+      <ul>
+        <li>Leurs coulisses (idéal pour préparer un RDV)</li>
+        <li>Des offres d'emploi</li>
+        <li>Des campagnes de recrutement</li>
+      </ul>
+      <p style="margin-top:.8rem; font-size:.82rem; color:var(--orange); font-weight:700;">&rarr; Suivre les entreprises locales</p>
+    </div>
+
+    <div class="social-card">
+      <div class="sc-icon">&#x1F3B5;</div>
+      <h3>TikTok</h3>
+      <p>Surprenant mais réel ! Certaines entreprises recrutent via TikTok :</p>
+      <ul>
+        <li>Restauration &amp; commerce</li>
+        <li>Communication</li>
+        <li>Métiers manuels</li>
+      </ul>
+      <p style="margin-top:.8rem; font-size:.82rem; color:var(--text-dim);">Ce n'est pas le réseau prioritaire, mais ça vaut le détour.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 TIPS -->
+<section id="tips">
+  <div class="reveal">
+    <div class="section-label">Accélérer &mdash; 3 min</div>
+    <h2>5 tips pour trouver plus vite</h2>
+  </div>
+
+  <div class="tips-list reveal">
+    <div class="tip">
+      <div class="tip-num"></div>
+      <p><strong>Postuler dans les 48h</strong> après la publication d'une annonce. Les premières candidatures sont souvent les plus regardées.</p>
+    </div>
+    <div class="tip">
+      <div class="tip-num"></div>
+      <p><strong>Personnaliser au moins 2 lignes du CV</strong> pour chaque candidature. C'est le minimum pour montrer que vous avez lu l'offre.</p>
+    </div>
+    <div class="tip">
+      <div class="tip-num"></div>
+      <p><strong>Utiliser son réseau personnel.</strong> Parlez de votre recherche autour de vous &mdash; famille, amis, anciens collègues, profs.</p>
+    </div>
+    <div class="tip">
+      <div class="tip-num"></div>
+      <p><strong>Relancer les recruteurs après 7 jours.</strong> Un message poli de suivi montre votre motivation et vous remet en haut de la pile.</p>
+    </div>
+    <div class="tip">
+      <div class="tip-num"></div>
+      <p><strong>Considérer la recherche comme un travail à temps plein</strong> &mdash; ce qui veut dire aussi savoir se libérer des plages de repos. Le temps plein, ce n'est pas du 24/24 !</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section>
+  <div class="conclusion-box reveal">
+    <h2>Ceux qui trouveront un emploi demain<br>ne sont pas ceux qui utilisent l'IA&hellip;<br>ce sont ceux qui savent <em>bien</em> l'utiliser.</h2>
+    <div class="conclusion-pills">
+      <span class="conclusion-pill">Comprendre les offres</span>
+      <span class="conclusion-pill">Améliorer vos candidatures</span>
+      <span class="conclusion-pill">Réussir vos entretiens</span>
+    </div>
+    <p class="final">Mais ce qui fera la différence :<br><strong>c'est vous, votre motivation et votre personnalité.</strong></p>
+  </div>
+</section>
+
+<footer>
+  <img src="https://www.atdec.org/wp-content/uploads/2026/02/atdec-mde-ml-plie-bleu-2.png" alt="Atdec Nantes Métropole" onerror="this.style.display='none'">
+  <span>Webinaire &mdash; Trouver un emploi plus vite grâce à l'IA &middot; Atdec Nantes Métropole</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
