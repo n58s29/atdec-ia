@@ -18,6 +18,8 @@
     --rose-pale: #FDE8F0;
     --vert: #2DB87B;
     --vert-pale: #E6F8F0;
+    --violet: #7C5CFC;
+    --violet-pale: #F0ECFF;
     --text-dark: #1a2234;
     --text-body: #3d4663;
     --text-dim: #7a8199;
@@ -29,10 +31,8 @@
     --radius: 16px;
     --radius-sm: 10px;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Nunito', sans-serif;
     background: var(--bg);
@@ -41,7 +41,7 @@
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: .8rem 2rem;
@@ -50,15 +50,8 @@
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; justify-content: space-between;
   }
-  nav .logo-wrap {
-    display: flex; align-items: center; gap: .7rem;
-  }
+  nav .logo-wrap { display: flex; align-items: center; gap: .7rem; }
   nav .logo-wrap img { height: 38px; }
-  nav .logo-text {
-    font-weight: 800; font-size: .85rem; color: var(--bleu-atdec);
-    letter-spacing: .02em; line-height: 1.2;
-  }
-  nav .logo-text span { display: block; font-weight: 600; font-size: .7rem; color: var(--text-dim); }
   nav ul { list-style: none; display: flex; gap: 1.8rem; }
   nav a {
     color: var(--text-dim); text-decoration: none; font-size: .82rem;
@@ -71,13 +64,12 @@
     transform: scaleX(0); transition: transform .25s;
   }
   nav a:hover::after { transform: scaleX(1); }
-
   @media (max-width: 700px) {
     nav ul { display: none; }
     nav { padding: .8rem 1.2rem; }
   }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     min-height: 100vh; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
@@ -97,22 +89,19 @@
     background: radial-gradient(circle, rgba(59,130,217,.1), transparent 70%);
     pointer-events: none;
   }
-
   .hero .badge {
     display: inline-flex; align-items: center; gap: .6rem;
     padding: .5rem 1.2rem; border-radius: 100px;
     background: var(--white); border: 1px solid var(--border);
     box-shadow: var(--shadow);
     font-size: .78rem; font-weight: 800; color: var(--bleu-atdec);
-    margin-bottom: 2rem;
-    animation: fadeUp .7s ease both;
+    margin-bottom: 2rem; animation: fadeUp .7s ease both;
     text-transform: uppercase; letter-spacing: .08em;
   }
   .hero .badge .dot {
     width: 8px; height: 8px; border-radius: 50%;
     background: var(--vert); animation: pulse 2s infinite;
   }
-
   .hero h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2.2rem, 5.5vw, 3.8rem);
@@ -121,21 +110,16 @@
     animation: fadeUp .7s .1s ease both;
   }
   .hero h1 em {
-    font-style: italic; color: var(--bleu-vif);
-    position: relative;
+    font-style: italic; color: var(--bleu-vif); position: relative;
   }
   .hero h1 em::after {
     content: ''; position: absolute; bottom: 2px; left: 0; right: 0;
-    height: 6px; background: rgba(242,140,40,.3); border-radius: 3px;
-    z-index: -1;
+    height: 6px; background: rgba(242,140,40,.3); border-radius: 3px; z-index: -1;
   }
-
   .hero .sub {
     margin-top: 1.5rem; font-size: 1.1rem; color: var(--text-dim);
-    max-width: 540px; font-weight: 600;
-    animation: fadeUp .7s .2s ease both;
+    max-width: 540px; font-weight: 600; animation: fadeUp .7s .2s ease both;
   }
-
   .hero .cta-row {
     display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap;
     justify-content: center; animation: fadeUp .7s .35s ease both;
@@ -157,10 +141,29 @@
     background: var(--white); color: var(--bleu-atdec);
     border: 2px solid var(--bleu-atdec);
   }
-
+  .hero .presenters {
+    display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap;
+    justify-content: center; animation: fadeUp .7s .45s ease both;
+  }
+  .presenter {
+    display: flex; align-items: center; gap: .8rem;
+    padding: .8rem 1.4rem; background: var(--white);
+    border-radius: var(--radius); border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .presenter .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 900; color: var(--white);
+  }
+  .presenter:nth-child(1) .avatar { background: var(--bleu-vif); }
+  .presenter:nth-child(2) .avatar { background: var(--orange); }
+  .presenter .info { text-align: left; }
+  .presenter .info strong { font-size: .88rem; color: var(--text-dark); display: block; }
+  .presenter .info span { font-size: .72rem; color: var(--text-dim); }
   .hero .stats {
-    display: flex; gap: 2.5rem; margin-top: 4rem;
-    animation: fadeUp .7s .5s ease both;
+    display: flex; gap: 2.5rem; margin-top: 2.5rem;
+    animation: fadeUp .7s .55s ease both;
   }
   .hero .stat {
     text-align: center; padding: 1.2rem 1.5rem;
@@ -168,8 +171,7 @@
     border: 1px solid var(--border); box-shadow: var(--shadow);
   }
   .hero .stat strong {
-    display: block; font-size: 1.6rem; font-weight: 900;
-    color: var(--bleu-vif);
+    display: block; font-size: 1.6rem; font-weight: 900; color: var(--bleu-vif);
   }
   .hero .stat span {
     font-size: .72rem; color: var(--text-dim);
@@ -180,9 +182,8 @@
     .hero .stat { padding: .8rem 1rem; }
   }
 
-  /* ── SECTIONS ── */
+  /* SECTIONS */
   section { padding: 5rem 2rem; max-width: 920px; margin: 0 auto; }
-
   .section-label {
     display: inline-flex; align-items: center; gap: .6rem;
     font-size: .72rem; font-weight: 800; text-transform: uppercase;
@@ -203,16 +204,59 @@
     margin-bottom: 2.5rem; font-weight: 600;
   }
 
-  /* ── INTRO COMPARE ── */
+  /* QUIZ */
+  .quiz-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+  }
+  @media (max-width: 650px) { .quiz-grid { grid-template-columns: 1fr; } }
+  .quiz-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.8rem;
+    box-shadow: var(--shadow); position: relative;
+    cursor: pointer; transition: transform .3s, box-shadow .3s; overflow: hidden;
+  }
+  .quiz-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .quiz-card .q-num {
+    position: absolute; top: 1rem; right: 1.2rem;
+    font-size: .65rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--text-dim);
+    background: var(--bleu-pale); padding: .2rem .6rem; border-radius: 6px;
+  }
+  .quiz-card .q-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 1rem;
+  }
+  .quiz-card:nth-child(odd) .q-icon { background: var(--orange-pale); }
+  .quiz-card:nth-child(even) .q-icon { background: var(--bleu-pale); }
+  .quiz-card:nth-child(3) .q-icon { background: var(--rose-pale); }
+  .quiz-card:nth-child(5) .q-icon { background: var(--violet-pale); }
+  .quiz-card:nth-child(7) .q-icon { background: var(--vert-pale); }
+  .quiz-card h3 {
+    font-size: .95rem; font-weight: 800; color: var(--bleu-atdec);
+    margin-bottom: .6rem; line-height: 1.4;
+  }
+  .quiz-card .answer {
+    font-size: .82rem; color: var(--text-dim); line-height: 1.6;
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s ease, opacity .3s; opacity: 0;
+  }
+  .quiz-card.open .answer { max-height: 300px; opacity: 1; }
+  .quiz-card .answer strong { color: var(--text-dark); }
+  .quiz-card .click-hint {
+    font-size: .7rem; color: var(--bleu-vif); font-weight: 700;
+    margin-top: .6rem; opacity: .7;
+  }
+  .quiz-card.open .click-hint { display: none; }
+
+  /* COMPARE */
   .compare-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;
   }
   @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
-
   .compare-card {
     padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border);
-    background: var(--white); position: relative; overflow: hidden;
-    box-shadow: var(--shadow);
+    background: var(--white); box-shadow: var(--shadow);
   }
   .compare-card.before { border-left: 4px solid var(--rose); }
   .compare-card.after { border-left: 4px solid var(--vert); }
@@ -223,9 +267,7 @@
   }
   .compare-card.before .tag { background: var(--rose-pale); color: var(--rose); }
   .compare-card.after .tag { background: var(--vert-pale); color: var(--vert); }
-  .compare-card .big {
-    font-size: 2.4rem; font-weight: 900; color: var(--bleu-atdec); margin-bottom: .3rem;
-  }
+  .compare-card .big { font-size: 2.4rem; font-weight: 900; color: var(--bleu-atdec); margin-bottom: .3rem; }
   .compare-card p { font-size: .9rem; color: var(--text-dim); }
 
   .message-cle {
@@ -239,19 +281,33 @@
   }
   .message-cle p { font-size: .92rem; color: var(--text-dark); }
 
-  /* ── STEPS ── */
+  /* TIP BOX */
+  .tip-box {
+    margin-top: 1.5rem; padding: 1.2rem 1.5rem;
+    background: var(--orange-pale); border: 1px solid rgba(242,140,40,.2);
+    border-radius: var(--radius); border-left: 4px solid var(--orange);
+  }
+  .tip-box .tip-label {
+    font-size: .72rem; font-weight: 800; color: var(--orange);
+    text-transform: uppercase; letter-spacing: .08em; margin-bottom: .3rem;
+  }
+  .tip-box p, .tip-box li { font-size: .88rem; color: var(--text-dark); }
+  .tip-box ul { list-style: none; margin-top: .4rem; }
+  .tip-box li { padding: .25rem 0; display: flex; align-items: flex-start; gap: .5rem; }
+  .tip-box li::before {
+    content: '!'; display: inline-flex; align-items: center; justify-content: center;
+    width: 18px; height: 18px; border-radius: 50%; background: var(--orange);
+    color: var(--white); font-size: .6rem; font-weight: 900; flex-shrink: 0; margin-top: 4px;
+  }
+
+  /* STEPS */
   .steps { counter-reset: step; }
   .step {
     counter-increment: step;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 2.5rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: box-shadow .3s, transform .3s;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2.5rem;
+    margin-bottom: 1.5rem; position: relative; overflow: hidden;
+    box-shadow: var(--shadow); transition: box-shadow .3s, transform .3s;
   }
   .step:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
   .step::before {
@@ -260,9 +316,7 @@
     font-size: 4rem; font-weight: 900; color: rgba(27,59,111,.04);
     line-height: 1; pointer-events: none;
   }
-  .step .step-head {
-    display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
-  }
+  .step .step-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
   .step .step-icon {
     width: 48px; height: 48px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
@@ -272,48 +326,37 @@
   .step:nth-child(2) .step-icon { background: var(--vert-pale); }
   .step:nth-child(3) .step-icon { background: var(--orange-pale); }
   .step:nth-child(4) .step-icon { background: var(--rose-pale); }
-  .step:nth-child(5) .step-icon { background: #F0E6FF; }
-
-  .step h3 {
-    font-size: 1.15rem; font-weight: 800; color: var(--bleu-atdec);
-  }
-  .step > p {
-    font-size: .92rem; color: var(--text-dim); margin-bottom: 1.2rem;
-  }
+  .step:nth-child(5) .step-icon { background: var(--violet-pale); }
+  .step h3 { font-size: 1.15rem; font-weight: 800; color: var(--bleu-atdec); }
+  .step > p { font-size: .92rem; color: var(--text-dim); margin-bottom: 1.2rem; }
 
   .prompt-box {
     background: var(--bleu-subtle); border: 1px solid var(--border);
     border-radius: var(--radius-sm); padding: 1.2rem 1.4rem;
-    margin-bottom: .8rem; font-size: .85rem; line-height: 1.7;
-    position: relative;
+    margin-bottom: .8rem; font-size: .85rem; line-height: 1.7; position: relative;
   }
   .prompt-box::before {
     content: 'PROMPT'; position: absolute; top: -.55rem; left: 1rem;
     font-size: .58rem; font-weight: 800; letter-spacing: .12em;
-    background: var(--bleu-vif); color: var(--white); padding: .15rem .6rem;
-    border-radius: 4px;
+    background: var(--bleu-vif); color: var(--white); padding: .15rem .6rem; border-radius: 4px;
   }
-  .prompt-box code {
-    font-family: 'Nunito', sans-serif; color: var(--bleu-atdec); font-weight: 600;
-  }
+  .prompt-box code { font-family: 'Nunito', sans-serif; color: var(--bleu-atdec); font-weight: 600; }
 
   .gain-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
   .gain-tag {
     display: inline-flex; align-items: center; gap: .3rem;
     padding: .35rem .9rem; border-radius: 100px;
     background: var(--vert-pale); font-size: .78rem;
-    color: var(--vert); font-weight: 700;
-    border: 1px solid rgba(45,184,123,.2);
+    color: var(--vert); font-weight: 700; border: 1px solid rgba(45,184,123,.2);
   }
 
-  /* ── ERRORS ── */
+  /* ERRORS */
   .errors-grid { display: flex; flex-direction: column; gap: 1.5rem; }
   .error-card {
     background: var(--white); border: 1px solid var(--border);
     border-left: 4px solid var(--rose);
     border-radius: var(--radius); padding: 2rem 2.5rem;
-    box-shadow: var(--shadow);
-    transition: transform .3s;
+    box-shadow: var(--shadow); transition: transform .3s;
   }
   .error-card:hover { transform: translateX(4px); }
   .error-card h3 {
@@ -328,16 +371,34 @@
     border: 1px solid rgba(232,75,138,.15);
   }
 
-  /* ── SOCIALS ── */
-  .social-cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.2rem;
+  /* AI SIGNS */
+  .signs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  @media (max-width: 650px) { .signs-grid { grid-template-columns: 1fr; } }
+  .sign-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.6rem;
+    box-shadow: var(--shadow); transition: transform .3s;
   }
+  .sign-card:hover { transform: translateY(-2px); }
+  .sign-card .sign-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; margin-bottom: .8rem; background: var(--rose-pale);
+  }
+  .sign-card h4 { font-size: .9rem; font-weight: 800; color: var(--bleu-atdec); margin-bottom: .4rem; }
+  .sign-card p { font-size: .82rem; color: var(--text-dim); line-height: 1.6; }
+  .sign-card .example {
+    margin-top: .6rem; padding: .6rem .8rem;
+    background: var(--bleu-subtle); border-radius: 8px;
+    font-size: .78rem; color: var(--text-body); font-style: italic;
+  }
+
+  /* SOCIALS */
+  .social-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
   .social-card {
     background: var(--white); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 2rem;
-    box-shadow: var(--shadow);
-    transition: transform .3s, box-shadow .3s;
+    box-shadow: var(--shadow); transition: transform .3s, box-shadow .3s;
   }
   .social-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
   .social-card .sc-icon {
@@ -347,7 +408,7 @@
   }
   .social-card:nth-child(1) .sc-icon { background: var(--bleu-pale); }
   .social-card:nth-child(2) .sc-icon { background: var(--orange-pale); }
-  .social-card:nth-child(3) .sc-icon { background: #F0E6FF; }
+  .social-card:nth-child(3) .sc-icon { background: var(--violet-pale); }
   .social-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--bleu-atdec); margin-bottom: .5rem; }
   .social-card p { font-size: .85rem; color: var(--text-dim); }
   .social-card ul { list-style: none; margin-top: .8rem; }
@@ -366,30 +427,29 @@
     border: 1px solid var(--border);
   }
 
-  /* ── TIPS ── */
+  /* TIPS LIST */
   .tips-list { counter-reset: tip; }
-  .tip {
+  .tip-item {
     counter-increment: tip;
     display: flex; align-items: flex-start; gap: 1.2rem;
     padding: 1.4rem 0; border-bottom: 1px solid var(--border);
   }
-  .tip:last-child { border-bottom: none; }
-  .tip .tip-num {
+  .tip-item:last-child { border-bottom: none; }
+  .tip-item .tip-num {
     flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px;
     background: var(--orange-pale); display: flex; align-items: center;
     justify-content: center; font-weight: 900; font-size: .9rem;
     color: var(--orange); border: 1px solid rgba(242,140,40,.2);
   }
-  .tip .tip-num::after { content: counter(tip); }
-  .tip p { font-size: .92rem; }
-  .tip strong { color: var(--text-dark); }
+  .tip-item .tip-num::after { content: counter(tip); }
+  .tip-item p { font-size: .92rem; }
+  .tip-item strong { color: var(--text-dark); }
 
-  /* ── CONCLUSION ── */
+  /* CONCLUSION */
   .conclusion-box {
     text-align: center; padding: 4rem 2.5rem;
     background: var(--bleu-atdec);
-    border-radius: 24px; position: relative; overflow: hidden;
-    color: var(--white);
+    border-radius: 24px; position: relative; overflow: hidden; color: var(--white);
   }
   .conclusion-box::before {
     content: ''; position: absolute; top: -80px; right: -80px;
@@ -406,12 +466,9 @@
   .conclusion-box h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700;
-    margin-bottom: 1.5rem; position: relative; line-height: 1.3;
-    color: var(--white);
+    margin-bottom: 1.5rem; position: relative; line-height: 1.3; color: var(--white);
   }
-  .conclusion-box h2 em {
-    font-style: italic; color: var(--orange);
-  }
+  .conclusion-box h2 em { font-style: italic; color: var(--orange); }
   .conclusion-pills {
     display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center;
     margin-bottom: 2rem; position: relative;
@@ -422,14 +479,11 @@
     font-size: .85rem; font-weight: 700; color: var(--white);
   }
   .conclusion-box .final {
-    font-size: 1.05rem; opacity: .85; max-width: 500px; margin: 0 auto;
-    position: relative;
+    font-size: 1.05rem; opacity: .85; max-width: 500px; margin: 0 auto; position: relative;
   }
-  .conclusion-box .final strong {
-    color: var(--orange); opacity: 1; font-weight: 800;
-  }
+  .conclusion-box .final strong { color: var(--orange); opacity: 1; font-weight: 800; }
 
-  /* ── FOOTER ── */
+  /* FOOTER */
   footer {
     text-align: center; padding: 2.5rem 2rem;
     font-size: .78rem; color: var(--text-dim);
@@ -438,7 +492,7 @@
   }
   footer img { height: 45px; opacity: .7; }
 
-  /* ── ANIMATIONS ── */
+  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -447,19 +501,11 @@
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: .4; transform: scale(.8); }
   }
-
   .reveal {
     opacity: 0; transform: translateY(28px);
     transition: opacity .6s ease, transform .6s ease;
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── DECORATIVE DOTS ── */
-  .deco-dots {
-    position: absolute; pointer-events: none; opacity: .15;
-  }
-
-  /* ── PRINT ── */
   @media print {
     nav { display: none; }
     .hero { min-height: auto; padding: 2rem; }
@@ -469,15 +515,16 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo-wrap">
     <img src="https://www.atdec.org/wp-content/uploads/2026/02/atdec-mde-ml-plie-bleu-2.png" alt="Logo Atdec Nantes Métropole" onerror="this.style.display='none'">
   </div>
   <ul>
+    <li><a href="#quiz">Quiz</a></li>
     <li><a href="#intro">Introduction</a></li>
     <li><a href="#etapes">5 étapes</a></li>
     <li><a href="#erreurs">Erreurs</a></li>
+    <li><a href="#signes">Signes IA</a></li>
     <li><a href="#reseaux">Réseaux</a></li>
     <li><a href="#tips">Tips</a></li>
   </ul>
@@ -489,23 +536,105 @@
   <h1>Trouver un emploi plus vite<br>grâce à <em>l'IA</em></h1>
   <p class="sub">Sans se faire piéger. Comment utiliser l'intelligence artificielle intelligemment dans votre recherche d'emploi.</p>
   <div class="cta-row">
-    <a href="#etapes" class="btn btn-primary">Découvrir les 5 étapes &darr;</a>
-    <a href="#erreurs" class="btn btn-secondary">Les erreurs à éviter</a>
+    <a href="#quiz" class="btn btn-primary">Commencer par le quiz &#8595;</a>
+    <a href="#etapes" class="btn btn-secondary">Les 5 étapes clés</a>
+  </div>
+  <div class="presenters">
+    <div class="presenter">
+      <div class="avatar">CR</div>
+      <div class="info">
+        <strong>Céline Roger</strong>
+        <span>Atdec Nantes Métropole</span>
+      </div>
+    </div>
+    <div class="presenter">
+      <div class="avatar">MR</div>
+      <div class="info">
+        <strong>Mathieu Ribourg</strong>
+        <span>Intervenant Innovation &amp; IA</span>
+      </div>
+    </div>
   </div>
   <div class="stats">
-    <div class="stat"><strong>30&rarr;10</strong><span>min / lettre</span></div>
+    <div class="stat"><strong>30&#8594;10</strong><span>min / lettre</span></div>
     <div class="stat"><strong>5</strong><span>usages clés</span></div>
     <div class="stat"><strong>3</strong><span>pièges à éviter</span></div>
   </div>
 </header>
 
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="reveal">
+    <div class="section-label">Brise-glace Kahoot — 10 min</div>
+    <h2>Quiz : Testez vos réflexes !</h2>
+    <p class="subtitle">Réseaux sociaux, IA, recrutement… 8 questions pour lancer la discussion. Cliquez sur chaque carte pour découvrir la réponse.</p>
+  </div>
+  <div class="quiz-grid">
+    <div class="quiz-card reveal" onclick="this.classList.toggle('open')">
+      <div class="q-num">Q1</div>
+      <div class="q-icon">&#9201;</div>
+      <h3>Combien de temps un recruteur passe-t-il en moyenne à regarder un CV ?</h3>
+      <div class="click-hint">&#8594; Cliquez pour voir la réponse</div>
+      <div class="answer"><strong>Environ 6 à 8 secondes.</strong> C'est tout. Votre CV doit accrocher immédiatement : titre clair, compétences visibles, mise en page aérée. Pas de pavé de texte !</div>
+    </div>
+    <div class="quiz-card reveal" onclick="this.classList.toggle('open')">
+      <div class="q-num">Q2</div>
+      <div class="q-icon">&#128269;</div>
+      <h3>Est-ce qu'un recruteur a déjà tapé votre nom dans Google avant un entretien ?</h3>
+      <div class="click-hint">&#8594; Cliquez pour voir la réponse</div>
+      <div class="answer"><strong>Oui, quasi systématiquement.</strong> Votre e-réputation compte. Tapez votre nom vous-même et vérifiez ce qui sort. Photos, anciens posts, commentaires… tout est visible.</div>
+    </div>
+    <div class="quiz-card reveal" onclick="this.classList.toggle('open')">
+      <div class="q-num">Q3</div>
+      <div class="q-icon">&#128444;</div>
+      <h3>Si je tape votre prénom + nom dans Google Images, qu'est-ce qui sort en premier ?</h3>
+      <div class="click-hint">&#8594; Cliquez pour voir la réponse</div>
+      <div class="answer"><strong>Faites le test maintenant.</strong> Beaucoup de gens n'ont jamais vérifié. Photos de soirée, vieux profils, images embarrassantes… Un recruteur, lui, le fait. Nettoyez si besoin.</div>
+    </div>
+    <div class="quiz-card reveal" onclick="this.classList.toggle('open')">
+      <div class="q-num">Q4</div>
+      <div class="q-icon">&#129302;</div>
+      <h3>Qui a déjà utilisé ChatGPT ou une autre IA pour rédiger quelque chose ?</h3>
+      <div class="click-hint">&#8594; Cliquez pour voir la réponse</div>
+      <div class="answer"><strong>Presque tout le monde !</strong> Et c'est normal. L'enjeu n'est pas de l'utiliser ou non, mais de savoir <strong>bien</strong> l'utiliser. Un copier-coller brut se repère. Un texte retravaillé, non.</div>
+    </div>
+    <div class="quiz-card reveal" onclick="this.classList.toggle('open')">
+      <div class="q-num">Q5</div>
+      <div class="q-icon">&#128241;</div>
+      <h3>Votre profil Instagram ou TikTok peut-il vous aider… ou vous nuire pour trouver un emploi ?</h3>
+      <div class="click-hint">&#8594; Cliquez pour voir la réponse</div>
+      <div class="answer"><strong>Les deux !</strong> Des stories de soirée en public = risqué. Mais suivre des entreprises, commenter leurs posts, montrer vos centres d'intérêt = un vrai plus. Passez vos comptes en privé si besoin.</div>
+    </div>
+    <div class="quiz-card reveal" onclick="this.classList.toggle('open')">
+      <div class="q-num">Q6</div>
+      <div class="q-icon">&#128188;</div>
+      <h3>Si un recruteur regarde votre profil LinkedIn aujourd'hui, qu'est-ce qu'il y trouve ?</h3>
+      <div class="click-hint">&#8594; Cliquez pour voir la réponse</div>
+      <div class="answer"><strong>Beaucoup de jeunes n'ont pas de profil ou un profil vide.</strong> Ce n'est pas grave, mais c'est une opportunité manquée. Un profil basique avec photo, titre et expériences prend 15 minutes à créer.</div>
+    </div>
+    <div class="quiz-card reveal" onclick="this.classList.toggle('open')">
+      <div class="q-num">Q7</div>
+      <div class="q-icon">&#9993;</div>
+      <h3>Un recruteur peut-il faire la différence entre une lettre écrite par vous et une générée par une IA ?</h3>
+      <div class="click-hint">&#8594; Cliquez pour voir la réponse</div>
+      <div class="answer"><strong>Oui, de plus en plus.</strong> Phrases trop lisses, structures trop parfaites, pas de personnalité… Les signaux sont nombreux. L'IA doit vous aider à écrire, pas écrire à votre place.</div>
+    </div>
+    <div class="quiz-card reveal" onclick="this.classList.toggle('open')">
+      <div class="q-num">Q8</div>
+      <div class="q-icon">&#128173;</div>
+      <h3>La dernière chose que vous avez publiée sur les réseaux — est-ce que vous l'enverriez à un futur employeur ?</h3>
+      <div class="click-hint">&#8594; Cliquez pour voir la réponse</div>
+      <div class="answer"><strong>Si la réponse est non, c'est un signal.</strong> Ce qui est en ligne reste en ligne. Avant de poster, posez-vous cette question. Pensez à vérifier vos paramètres de confidentialité.</div>
+    </div>
+  </div>
+</section>
+
 <!-- INTRO -->
 <section id="intro">
   <div class="reveal">
-    <div class="section-label">Introduction &mdash; 5 min</div>
+    <div class="section-label">Introduction — 5 min</div>
     <h2>La recherche d'emploi a changé</h2>
-    <p class="subtitle">Les recruteurs utilisent aussi l'IA. Les candidatures sont plus nombreuses. Et beaucoup de candidats utilisent l'IA&hellip; assez mal.</p>
-
+    <p class="subtitle">Les recruteurs utilisent aussi l'IA. Les candidatures sont plus nombreuses. Et beaucoup de candidats utilisent l'IA… assez mal.</p>
     <div class="compare-grid">
       <div class="compare-card before">
         <div class="tag">Avant l'IA</div>
@@ -515,13 +644,21 @@
       <div class="compare-card after">
         <div class="tag">Avec l'IA</div>
         <div class="big">10 min</div>
-        <p>Une lettre personnalisée et percutante &mdash; mais seulement si on sait bien s'en servir.</p>
+        <p>Une lettre personnalisée et percutante — mais seulement si on sait bien s'en servir.</p>
       </div>
     </div>
-
     <div class="message-cle">
       <div class="label">Message clé</div>
       <p>L'IA n'est pas là pour chercher un travail à votre place. Elle est là pour vous aider à <strong>réfléchir plus vite et mieux</strong>. L'IA ne va pas vous trouver du travail, mais vous allez vous en servir pour chercher et être percutant dans vos démarches.</p>
+    </div>
+    <div class="tip-box">
+      <div class="tip-label">Tips &amp; Warnings à garder en tête</div>
+      <ul>
+        <li>Attention au <strong>format de fichier</strong> : envoyez votre CV en PDF, pas en .docx ou .pages</li>
+        <li>Les CV <strong>trop standardisés Canva</strong> se repèrent immédiatement — personnalisez !</li>
+        <li><strong>Ne pas envoyer la lettre de motivation</strong> quand elle n'est pas demandée</li>
+        <li>Toujours <strong>relire les éléments produits par l'IA</strong> et si possible les faire relire par un tiers</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -529,16 +666,14 @@
 <!-- 5 ÉTAPES -->
 <section id="etapes">
   <div class="reveal">
-    <div class="section-label">Le c&oelig;ur du webinaire &mdash; 20 min</div>
+    <div class="section-label">Le coeur du webinaire — 20 min</div>
     <h2>5 utilisations utiles de l'IA</h2>
     <p class="subtitle">De la compréhension de l'offre jusqu'au pitch en entretien, voici comment l'IA devient votre assistant personnel.</p>
   </div>
-
   <div class="steps">
-    <!-- Step 1 -->
     <div class="step reveal">
       <div class="step-head">
-        <div class="step-icon">&#x1F50D;</div>
+        <div class="step-icon">&#128269;</div>
         <h3>Comprendre une offre d'emploi</h3>
       </div>
       <p>Beaucoup de personnes ne comprennent pas toujours les offres ou ne prennent pas le temps de les lire avec attention. L'IA peut décrypter pour vous.</p>
@@ -550,11 +685,9 @@
         <span class="gain-tag">&#10003; Moins d'auto-censure</span>
       </div>
     </div>
-
-    <!-- Step 2 -->
     <div class="step reveal">
       <div class="step-head">
-        <div class="step-icon">&#x1F4DD;</div>
+        <div class="step-icon">&#128221;</div>
         <h3>Adapter son CV à une offre</h3>
       </div>
       <p>Un CV ciblé = plus de chances d'obtenir une réponse. L'IA vous aide à aligner vos expériences avec ce que recherche le recruteur.</p>
@@ -569,11 +702,9 @@
         <span class="gain-tag">&#10003; Plus de réponses</span>
       </div>
     </div>
-
-    <!-- Step 3 -->
     <div class="step reveal">
       <div class="step-head">
-        <div class="step-icon">&#x1F3AF;</div>
+        <div class="step-icon">&#127919;</div>
         <h3>Préparer un entretien</h3>
       </div>
       <p>Usage parfois peu connu mais redoutablement efficace. L'IA peut même simuler un entretien complet !</p>
@@ -588,14 +719,12 @@
         <span class="gain-tag">&#10003; Moins de stress</span>
       </div>
     </div>
-
-    <!-- Step 4 -->
     <div class="step reveal">
       <div class="step-head">
-        <div class="step-icon">&#x1F4AA;</div>
+        <div class="step-icon">&#128170;</div>
         <h3>Identifier ses compétences</h3>
       </div>
-      <p>Beaucoup de juniors sous-estiment leurs compétences. L'IA est configurée pour encourager et soutenir &mdash; jamais pour juger ou dénigrer.</p>
+      <p>Beaucoup de juniors sous-estiment leurs compétences. L'IA est configurée pour encourager et soutenir — jamais pour juger ou dénigrer. Travailler ses compétences est essentiel : elles doivent être maîtrisées pour être défendues en entretien.</p>
       <div class="prompt-box">
         <code>Voici les missions de mon alternance. Quelles compétences professionnelles puis-je mettre sur mon CV ?</code>
       </div>
@@ -605,11 +734,9 @@
         <span class="gain-tag">&#10003; Meilleur entretien</span>
       </div>
     </div>
-
-    <!-- Step 5 -->
     <div class="step reveal">
       <div class="step-head">
-        <div class="step-icon">&#x1F3A4;</div>
+        <div class="step-icon">&#127908;</div>
         <h3>S'entraîner à parler de soi</h3>
       </div>
       <p>Le fameux « pitch » d'une minute. Indispensable pour les entretiens, les forums emploi et les appels aux recruteurs.</p>
@@ -628,43 +755,98 @@
 <!-- ERREURS -->
 <section id="erreurs">
   <div class="reveal">
-    <div class="section-label">Partie cruciale &mdash; 7 min</div>
+    <div class="section-label">Partie cruciale — 7 min</div>
     <h2>Les erreurs à éviter</h2>
     <p class="subtitle">Utiliser l'IA c'est bien. Bien l'utiliser c'est mieux. Voici les 3 pièges classiques.</p>
   </div>
-
   <div class="errors-grid">
     <div class="error-card reveal">
       <h3>&#9888;&#65039; Le copier-coller brut</h3>
       <p>Les recruteurs repèrent immédiatement les phrases trop génériques, le manque de personnalité et les lettres identiques entre candidats.</p>
-      <div class="key-msg">&rarr; L'IA doit aider à écrire, pas écrire à votre place.</div>
+      <div class="key-msg">&#8594; L'IA doit aider à écrire, pas écrire à votre place.</div>
     </div>
-
     <div class="error-card reveal">
       <h3>&#9888;&#65039; Mentir avec l'IA</h3>
-      <p>Inventer des compétences ou des expériences, c'est le risque d'être mis en difficulté en entretien et de perdre toute crédibilité. Attention : si vous demandez à l'IA de « développer » une compétence, elle va le faire&hellip; même au-delà de la réalité.</p>
-      <div class="key-msg">&rarr; L'IA amplifie ce que vous lui donnez. Si vous lui donnez du faux, elle amplifie du faux.</div>
+      <p>Inventer des compétences ou des expériences, c'est le risque d'être mis en difficulté en entretien et de perdre toute crédibilité. Attention : si vous demandez à l'IA de « développer » une compétence, elle va le faire… même au-delà de la réalité.</p>
+      <div class="key-msg">&#8594; L'IA amplifie ce que vous lui donnez. Si vous lui donnez du faux, elle amplifie du faux.</div>
     </div>
-
     <div class="error-card reveal">
       <h3>&#9888;&#65039; Dépendre totalement de l'IA</h3>
       <p>Si l'IA devient indisponible : plus d'idées, plus d'autonomie. Le gain de confiance construit en des semaines est perdu en quelques minutes.</p>
-      <div class="key-msg">&rarr; L'IA doit valoriser votre intelligence, pas la remplacer.</div>
+      <div class="key-msg">&#8594; L'IA doit valoriser votre intelligence, pas la remplacer.</div>
     </div>
+  </div>
+</section>
+
+<!-- SIGNES IA -->
+<section id="signes">
+  <div class="reveal">
+    <div class="section-label">Bonus pédagogique</div>
+    <h2>Comment repérer un texte écrit par l'IA ?</h2>
+    <p class="subtitle">Quand l'humain ne relit pas, ne corrige pas, n'enrichit pas la production de l'IA, voici les signes visibles — surtout par des recruteurs aguerris.</p>
+  </div>
+  <div class="signs-grid">
+    <div class="sign-card reveal">
+      <div class="sign-icon">&#128270;</div>
+      <h4>Ton trop neutre, trop « parfait »</h4>
+      <p>Style très lisse, sans fautes, sans hésitations. Peu de personnalité ou d'émotions réelles.</p>
+      <div class="example">« Dans un monde en constante évolution, il est essentiel de s'adapter… » — Ça sonne bien, mais ça pourrait venir de n'importe où.</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-icon">&#129521;</div>
+      <h4>Structures répétitives</h4>
+      <p>Paragraphes construits de manière similaire. « Tout d'abord… Ensuite… Enfin… ». Listes trop propres et équilibrées.</p>
+      <div class="example">L'IA adore les structures claires… parfois trop.</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-icon">&#128173;</div>
+      <h4>Généralités et manque de vécu</h4>
+      <p>Peu d'anecdotes personnelles, exemples génériques. Un humain dit « la semaine dernière, j'ai testé… » — l'IA dit « il est intéressant de noter que… »</p>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-icon">&#128257;</div>
+      <h4>Répétition d'idées reformulées</h4>
+      <p>Même idée répétée sous plusieurs formes. Impression de « remplissage intelligent ».</p>
+      <div class="example">« Il est important d'être régulier. La constance est la clé. Publier régulièrement est essentiel. »</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-icon">&#128172;</div>
+      <h4>Expressions typiques de l'IA</h4>
+      <p>Certaines tournures reviennent sans cesse : « Il est important de noter que… », « Dans un monde en constante évolution… », « Que ce soit… ou… »</p>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-icon">&#9878;</div>
+      <h4>Manque de parti pris</h4>
+      <p>Pas d'opinions tranchées, toujours équilibré à l'extrême. Un humain peut être subjectif — l'IA beaucoup moins.</p>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-icon">&#128207;</div>
+      <h4>Tirets, marges et mise en forme suspecte</h4>
+      <p>Tirets longs (—) partout, espaces parfaites, paragraphes de longueur identique, ponctuation impeccable. Un texte trop « propre » paraît suspect.</p>
+      <div class="example">Emojis placés stratégiquement, listes trop symétriques, structures visuelles parfaites.</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-icon">&#128680;</div>
+      <h4>Zéro « bruit humain »</h4>
+      <p>Pas de coquilles, pas de tournures maladroites, pas de spontanéité. Ironiquement, un texte trop parfait est… suspect.</p>
+    </div>
+  </div>
+  <div class="message-cle reveal" style="margin-top: 2rem;">
+    <div class="label">Comment rendre un texte plus humain ?</div>
+    <p>Ajoutez du <strong>vécu personnel</strong>, introduisez des <strong>imperfections légères</strong>, variez le rythme (phrases courtes + longues), <strong>prenez position</strong>, et surtout : écrivez comme vous parlez.</p>
   </div>
 </section>
 
 <!-- RÉSEAUX SOCIAUX -->
 <section id="reseaux">
   <div class="reveal">
-    <div class="section-label">Bonus &mdash; 5 min</div>
+    <div class="section-label">Complémentaire — 5 min</div>
     <h2>Les réseaux sociaux pour trouver un emploi</h2>
     <p class="subtitle">LinkedIn n'est pas le seul réseau utile. Voici comment exploiter chaque plateforme.</p>
   </div>
-
   <div class="social-cards reveal">
     <div class="social-card">
-      <div class="sc-icon">&#x1F4BC;</div>
+      <div class="sc-icon">&#128188;</div>
       <h3>LinkedIn</h3>
       <p>Le réseau incontournable pour la recherche d'emploi.</p>
       <ul>
@@ -672,25 +854,21 @@
         <li>Commenter des publications</li>
         <li>Envoyer des messages simples aux recruteurs</li>
       </ul>
-      <div class="msg-example">
-        &laquo; Bonjour, je termine mon alternance en commerce et je m'intéresse à votre entreprise. Auriez-vous des conseils pour quelqu'un qui souhaite travailler dans ce secteur ? &raquo;
-      </div>
+      <div class="msg-example">« Bonjour, je termine mon alternance en commerce et je m'intéresse à votre entreprise. Auriez-vous des conseils pour quelqu'un qui souhaite travailler dans ce secteur ? Pourrions-nous convenir d'un échange ? »</div>
     </div>
-
     <div class="social-card">
-      <div class="sc-icon">&#x1F4F8;</div>
+      <div class="sc-icon">&#128248;</div>
       <h3>Instagram</h3>
       <p>Oui, ça peut servir ! Certaines entreprises publient :</p>
       <ul>
-        <li>Leurs coulisses (idéal pour préparer un RDV)</li>
+        <li>Leurs coulisses (idéal pour préparer un RDV ou inspirer une lettre)</li>
         <li>Des offres d'emploi</li>
         <li>Des campagnes de recrutement</li>
       </ul>
-      <p style="margin-top:.8rem; font-size:.82rem; color:var(--orange); font-weight:700;">&rarr; Suivre les entreprises locales</p>
+      <p style="margin-top:.8rem; font-size:.82rem; color:var(--orange); font-weight:700;">&#8594; Suivre les entreprises locales</p>
     </div>
-
     <div class="social-card">
-      <div class="sc-icon">&#x1F3B5;</div>
+      <div class="sc-icon">&#127925;</div>
       <h3>TikTok</h3>
       <p>Surprenant mais réel ! Certaines entreprises recrutent via TikTok :</p>
       <ul>
@@ -706,30 +884,29 @@
 <!-- 5 TIPS -->
 <section id="tips">
   <div class="reveal">
-    <div class="section-label">Accélérer &mdash; 3 min</div>
+    <div class="section-label">Accélérer — 3 min</div>
     <h2>5 tips pour trouver plus vite</h2>
   </div>
-
   <div class="tips-list reveal">
-    <div class="tip">
+    <div class="tip-item">
       <div class="tip-num"></div>
       <p><strong>Postuler dans les 48h</strong> après la publication d'une annonce. Les premières candidatures sont souvent les plus regardées.</p>
     </div>
-    <div class="tip">
+    <div class="tip-item">
       <div class="tip-num"></div>
       <p><strong>Personnaliser au moins 2 lignes du CV</strong> pour chaque candidature. C'est le minimum pour montrer que vous avez lu l'offre.</p>
     </div>
-    <div class="tip">
+    <div class="tip-item">
       <div class="tip-num"></div>
-      <p><strong>Utiliser son réseau personnel.</strong> Parlez de votre recherche autour de vous &mdash; famille, amis, anciens collègues, profs.</p>
+      <p><strong>Utiliser son réseau personnel.</strong> Parlez de votre recherche autour de vous — famille, amis, anciens collègues, profs.</p>
     </div>
-    <div class="tip">
+    <div class="tip-item">
       <div class="tip-num"></div>
       <p><strong>Relancer les recruteurs après 7 jours.</strong> Un message poli de suivi montre votre motivation et vous remet en haut de la pile.</p>
     </div>
-    <div class="tip">
+    <div class="tip-item">
       <div class="tip-num"></div>
-      <p><strong>Considérer la recherche comme un travail à temps plein</strong> &mdash; ce qui veut dire aussi savoir se libérer des plages de repos. Le temps plein, ce n'est pas du 24/24 !</p>
+      <p><strong>Considérer la recherche comme un travail à temps plein</strong> — ce qui veut dire aussi savoir se libérer des plages de repos. Le temps plein, ce n'est pas du 24/24 !</p>
     </div>
   </div>
 </section>
@@ -737,7 +914,7 @@
 <!-- CONCLUSION -->
 <section>
   <div class="conclusion-box reveal">
-    <h2>Ceux qui trouveront un emploi demain<br>ne sont pas ceux qui utilisent l'IA&hellip;<br>ce sont ceux qui savent <em>bien</em> l'utiliser.</h2>
+    <h2>Ceux qui trouveront un emploi demain<br>ne sont pas ceux qui utilisent l'IA…<br>ce sont ceux qui savent <em>bien</em> l'utiliser.</h2>
     <div class="conclusion-pills">
       <span class="conclusion-pill">Comprendre les offres</span>
       <span class="conclusion-pill">Améliorer vos candidatures</span>
@@ -749,18 +926,15 @@
 
 <footer>
   <img src="https://www.atdec.org/wp-content/uploads/2026/02/atdec-mde-ml-plie-bleu-2.png" alt="Atdec Nantes Métropole" onerror="this.style.display='none'">
-  <span>Webinaire &mdash; Trouver un emploi plus vite grâce à l'IA &middot; Atdec Nantes Métropole</span>
+  <span>Webinaire — Trouver un emploi plus vite grâce à l'IA · Atdec Nantes Métropole</span>
 </footer>
 
 <script>
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
